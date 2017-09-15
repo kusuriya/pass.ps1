@@ -1,4 +1,8 @@
-$clearTime = 5
+param (
+    $clearTime = 5,
+    $Name
+)
+
 function List () {
     Push-Location -Path ~/.password-store
     (& tree /F /A) -replace ".gpg", ""
@@ -6,7 +10,7 @@ function List () {
 }
 
 function Decrypt ($name) {
-    $fn=("c:\{0}\.password-store\{1}.gpg" -f $env:HOMEPATH, ($name).Replace('/','\'))
+    $fn="c:\{0}\.password-store\{1}.gpg" -f $env:HOMEPATH, ($name).Replace('/','\')
 
     if (Test-Path -Path $fn) {
         $out = (& gpg2 -d $fn)
@@ -15,16 +19,15 @@ function Decrypt ($name) {
         $ignored = (Start-Job {
             Start-Sleep -Seconds 45
             Write-Host "Clearing clipboard"
-            # TODO hopefully there is a better way to do this!
-            Start-Process Powershell.exe -argumentlist ("-sta -NoProfile -Command {0}" -f 'Set-Clipboard -Value "pass.ps1"')
+            Set-Clipboard -Value ([string]::Empty)
         })
     } else {
         Write-Host ("{0} doesn't exist!" -f $fn)
     }
 }
 
-if ($args.Length -gt 0) {
-    Decrypt($args[0])
+if ($name) {
+    Decrypt($name)
 } else {
     List
 }
