@@ -1,4 +1,4 @@
-function Get-PasswordValue {
+function Get-Credential {
     <#
     .DESCRIPTION
     Get the plain text password values from a pass credential

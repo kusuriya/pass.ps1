@@ -2,12 +2,12 @@ $here = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace '\\Tests'
 $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
 . "$here\Public\$sut"
 
-Describe 'Get-PasswordValue' {
+Describe 'Get-Credential' {
     It -name "Decrypts bob.gpg and puts it in the clipboard" {
-        Get-PasswordValue -path "$here\Tests\Artifacts\password-store" -name bob
+        Get-Credential -path "$here\Tests\Artifacts\password-store" -name bob
         Get-Clipboard | Should Be 'Success'
     }
-    $result = Get-PasswordValue -path "$here\Tests\Artifacts\password-store" -name bob -AsPSCredential
+    $result = Get-Credential -path "$here\Tests\Artifacts\password-store" -name bob -AsPSCredential
     It -name 'Creates a PSCredential Object' {
         $result.GetType().Name | Should Be 'PSCredential'
     }
