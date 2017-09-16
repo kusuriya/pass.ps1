@@ -1,4 +1,4 @@
-﻿. $PSScriptRoot/Public/Show-CredentialList.ps1
-. $PSScriptRoot/Public/Get-Credential.ps1
-. $PSScriptRoot/Public/New-Credential.ps1
-. $PSScriptRoot/Public/Set-Credential.ps1
+﻿. $PSScriptRoot/Public/Show-PassList.ps1
+. $PSScriptRoot/Public/Get-PassCredential.ps1
+. $PSScriptRoot/Public/New-PassCredential.ps1
+. $PSScriptRoot/Public/Set-PassCredential.ps1

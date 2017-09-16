@@ -1,4 +1,4 @@
-function Show-CredentialList {
+function Show-PassList {
     <#
     .DESCRIPTION
     List all of the credentials in the vault
