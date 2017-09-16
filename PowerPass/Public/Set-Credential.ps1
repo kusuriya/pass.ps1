@@ -27,9 +27,10 @@ function New-Credential {
     
     if (Test-Path -Path $PasswordFile) {
         $EncryptedPassword = $Password | & gpg2 -e -r $GPGKeyName --armor
-        Out-File -FilePath (Join-Path -Path $Path -ChildPath ('{0}.gpg' -f $Name)) -Encoding utf8
+        Out-File -FilePath (Join-Path -Path $Path -ChildPath ('{0}.gpg' -f $Name)) -Encoding utf8 -InputObject $EncryptedPassword
         
     } else {
         Write-Error -Message ('{0} Not Found! Did you mean New-Credential?') -Exception ([System.Data.ObjectNotFoundException]::new())
     }
+    Remove-Variable -Force -Name $Password
 }

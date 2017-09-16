@@ -24,11 +24,13 @@ function New-Credential {
     )
 
     $passwordFile = Join-Path -Path $Path -ChildPath ('{0}.gpg' -f $Name)
-    
     if (Test-Path -Path $PasswordFile) {
         Write-Error -Message ('{0} Already exists! Did you mean Set-CredentialValue?')
     } else {
         $EncryptedPassword = $Password | & gpg2 -e -r $GPGKeyName --armor
-        Out-File -FilePath (Join-Path -Path $Path -ChildPath ('{0}.gpg' -f $Name)) -Encoding utf8
+        $CredentialPath = (Join-Path -Path $Path -ChildPath ('{0}.gpg' -f $Name))
+        New-Item -Force -Type File -Path $CredentialPath 
+        Out-File -FilePath $CredentialPath -Encoding utf8 -InputObject $EncryptedPassword
     }
+    Remove-Variable -Force -Name Password
 }
