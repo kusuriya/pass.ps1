@@ -19,7 +19,7 @@ function Get-PassCredential {
     Location of the GPG executable, defaults to whatever Get-Command finds
 
     .EXAMPLE
-    Get-PasswordValue -Name bill -clearTime 10
+    Get-PassCredential -Name bill -clearTime 10
     will get a credential from a credential named bill and clear the clipboard after 10 seconds
 
     #>

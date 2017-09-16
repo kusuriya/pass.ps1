@@ -5,7 +5,7 @@ This is a powershell adaptation of zx2c4's [password-store](https://www.password
 ## Tests
 In the artifacts directory there is a completely known pgp key and a test store. the key will need to be imported into the key ring of the system running the test past that there are no other requirements to run the tests.
 
-## Get-PasswordValue
+## Get-PassCredential
 This will retrieve and decryp credentials in the password vault. It only has one mandatory paramater which is `-name`
 
 ### Name
@@ -29,7 +29,7 @@ This is where your password store sits.
 
 Default is: ~/.password-store
 
-### Show-CredentialList
+### Show-PassList
 This gives you a list of all the credentials in your password store
 
 ### Path
