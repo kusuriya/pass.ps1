@@ -32,5 +32,5 @@ function New-Credential {
     } else {
         Write-Error -Message ('{0} Not Found! Did you mean New-Credential?') -Exception ([System.Data.ObjectNotFoundException]::new())
     }
-    Remove-Variable -Force -Name $Password
+    Remove-Variable -Force -Name Password
 }
